@@ -14,7 +14,6 @@ let dino ={
         ctx.fillRect(this.x,this.y,this.width,this.height);
     }
 }
-dino.x += 1;
 dino.draw();
 
 class Cactus{
@@ -30,5 +29,23 @@ class Cactus{
     }
 }
 
-var cactus = new Cactus();
-cactus.draw();
+let timer = 0;
+let cactusPlay = [];
+
+function framePlay(){
+    requestAnimationFrame(framePlay);
+    timer++;
+
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    if(timer % 120 === 0){
+        let cactus = new Cactus();
+        cactusPlay.push(cactus);
+    }
+    cactusPlay.forEach((a)=>{
+        a.x--;
+        a.draw();
+    })
+    dino.draw();
+}
+
+framePlay();
